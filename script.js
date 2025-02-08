@@ -1,20 +1,28 @@
-var modal = document.getElementById("signInModal");
-var btn = document.getElementById("signInBtn");
-var closeBtn = document.getElementById("closeModalBtn");
+document.addEventListener("DOMContentLoaded", function() {
+    let dropdowns = document.querySelectorAll(".dropdown > a");
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener("click", function(event) {
+            event.preventDefault();
+            let submenu = this.nextElementSibling;
+            submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+        });
+    });
 
-// When the user clicks the "Sign In" link, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+    var modal = document.getElementById("signInModal");
+    var btn = document.getElementById("signInBtn");
+    var closeBtn = document.getElementById("closeModalBtn");
 
-// When the user clicks on the close button, close the modal
-closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
-// When the user clicks anywhere outside the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
+    closeBtn.onclick = function() {
         modal.style.display = "none";
     }
-}
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});

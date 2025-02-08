@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Planner - BudgetBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for Yearly Planner Page */
+        .content {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .form-container {
+            margin: 20px;
+        }
+
+        .form-container input,
+        .form-container select {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            width: 150px;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .category-summary {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .yearly-plan {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .yearly-plan h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .yearly-plan .protip {
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo">
+        </div>
+        <div class="title-container">
+            <div class="title">Yearly Expense Planner</div>
+            <div class="slogan">Track your yearly expenses and stay on top of your budget!</div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Yearly Planner</h2>
+        <p>Enter your monthly expenses by category, and track your spending across the year.</p>
+
+        <!-- Form for manually entering yearly expenses -->
+        <div class="form-container">
+            <h3>Enter Monthly Expenses</h3>
+
+            <!-- Category selection and input for each month -->
+            <form id="expenseForm">
+                <label for="category">Category: </label>
+                <select id="category">
+                    <option value="Food">Food</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="month">Month: </label>
+                <select id="month">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+
+                <label for="expense">Expense ($): </label>
+                <input type="number" id="expense" placeholder="Enter expense amount" required>
+
+                <button type="button" onclick="addExpense()">Add Expense</button>
+            </form>
+        </div>
+
+        <!-- Yearly Expense Chart (Diagrammatic representation) -->
+        <div class="chart-container">
+            <canvas id="yearlyExpenseChart" width="900" height="400"></canvas>
+        </div>
+
+        <!-- Yearly Expense Breakdown -->
+        <div class="category-summary" id="categorySummary">
+            <h3>Yearly Expense Breakdown</h3>
+            <p>Total Spending: $0</p>
+            <p>Food: $0</p>
+            <p>Rent: $0</p>
+            <p>Utilities: $0</p>
+            <p>Entertainment: $0</p>
+            <p>Other: $0</p>
+        </div>
+
+        <!-- ProTip Section -->
+        <div class="yearly-plan">
+            <h2>ProTip: Save Money This Year!</h2>
+            <div class="protip">
+                <p>Start by setting a realistic budget for each category based on your income and previous year’s spending. Monitor your expenses regularly to avoid overspending, and set aside savings to ensure financial stability throughout the year!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Including Chart.js Library for Visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Store the yearly expenses data in an object
+        let expenses = {
+            January: { Food: 0, Rent: 0, Utilities: 0, Transportation: 0, Entertainment: 0, Other: 0 },
+            February: { Food: 0, Rent: 0, Utilities: 0, Transportation: 0, Entertainment: 0, Other: 0 },
+            // ... Initialize for all months
+            December: { Food: 0, Rent: 0, Utilities: 0, Transportation: 0, Entertainment: 0, Other: 0 }
+        };
+
+        // Function to update the chart with the new data
+        function updateChart() {
+            const months = Object.keys(expenses);
+            const categoryData = {
+                Food: [],
+                Rent: [],
+                Utilities: [],
+                Transportation: [],
+                Entertainment: [],
+                Other: []
+            };
+
+            // Collect the data for each category per month
+            months.forEach(month => {
+                Object.keys(expenses[month]).forEach(category => {
+                    categoryData[category].push(expenses[month][category]);
+                });
+            });
+
+            // Update the chart
+            const chartData = {
+                labels: months,
+                datasets: Object.keys(categoryData).map((category, index) => ({
+                    label: category,
+                    data: categoryData[category],
+                    backgroundColor: `rgba(${index * 40}, ${100 + index * 40}, 150, 0.5)`, // Dynamic color for each category
+                    borderColor: `rgba(${index * 40}, ${100 + index * 40}, 150, 1)`,
+                    borderWidth: 1
+                }))
+            };
+
+            const chartConfig = {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            const yearlyExpenseChart = new Chart(
+                document.getElementById('yearlyExpenseChart'),
+                chartConfig
+            );
+        }
+
+        // Function to add a new expense
+        function addExpense() {
+            const category = document.getElementById("category").value;
+            const month = document.getElementById("month").value;
+            const expense = parseFloat(document.getElementById("expense").value);
+
+            // Validate the expense
+            if (expense > 0) {
+                // Update the expense data
+                expenses[month][category] += expense;
+
+                // Update the chart and category summary
+                updateChart();
+                updateCategorySummary();
+            } else {
+                alert("Please enter a valid expense amount.");
+            }
+
+            // Reset the form inputs
+            document.getElementById("expense").value = '';
+        }
+
+        // Function to update the category-wise summary
+        function updateCategorySummary() {
+            let total = 0;
+            let categoryTotals = { Food: 0, Rent: 0, Utilities: 0, Transportation: 0, Entertainment: 0, Other: 0 };
+
+            // Calculate total expenses for each category
+            Object.keys(expenses).forEach(month => {
+                Object.keys(expenses[month]).forEach(category => {
+                    categoryTotals[category] += expenses[month][category];
+                    total += expenses[month][category];
+                });
+            });
+
+            // Update the summary section with calculated totals
+            document.getElementById("categorySummary").innerHTML = `
+                <h3>Yearly Expense Breakdown</h3>
+                <p>Total Spending: $${total}</p>
+                <p>Food: $${categoryTotals.Food}</p>
+                <p>Rent: $${categoryTotals.Rent}</p>
+                <p>Utilities: $${categoryTotals.Utilities}</p>
+                <p>Transportation: $${categoryTotals.Transportation}</p>
+                <p>Entertainment: $${categoryTotals.Entertainment}</p>
+                <p>Other: $${categoryTotals.Other}</p>
+            `;
+        }
+    </script>
+
+</body>
+
+</html>

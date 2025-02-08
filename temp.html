@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="signin-style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo"> 
+        </div>
+        <div class="title-container">
+             <div class="title">BudgetBuddy</div>
+             <div class="slogan">Track Expenses, Save Smart, Live Stress-Free!</div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="sign-in">
+            <a href="javascript:void(0);" id="signInBtn">Sign In</a>
+        </div>
+    </header>
+    
+    <nav class="menu">
+        <ul>
+            <li class="dropdown">
+                <a href="#">Home ▼</a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="dropdown">
+                        <a href="#">Expense Tracker ▼</a>
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="dailyexpense.html">Daily Expense</a></li>
+                            <li><a href="monthlyexpense.html">Monthly Expense</a></li>
+                            <li><a href="yearlyexpense.html">Yearly Expense</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Budget Planner ▼</a>
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="monthlybud.html">Monthly Planner</a></li>
+                            <li><a href="yearlybud.html">Yearly Planner</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="billreminder.html">Bill Reminders</a></li>
+                    <li><a href="student.html">student Reminders</a></li>
+                    <li><a href="piggy.html">Savings</a></li>
+                    <li class="dropdown">
+                        <a href="about.html">About ▼</a>
+                       <!-- <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="#">BudgetBuddy is a personal finance management tool designed to help you track your expenses, plan budgets, set bill reminders, and save money efficiently. Our goal is to make financial management easy and stress-free for everyone.</a></li>
+                        </ul>-->
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+            </div>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <button type="button" id="closeModalBtn">Close</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
