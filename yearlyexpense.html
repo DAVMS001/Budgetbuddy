@@ -5,13 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yearly Expenses - BudgetBuddy</title>
-    <link rel="stylesheet" href="styles.css">
+
     <style>
-        /* Styling for the Yearly Expenses page */
+        /* Styling for the entire content */
         .content {
             margin: 20px;
+            border: 2px solid white; /* White border for the content */
+            border-radius: 10px; /* Optional: Adding rounded corners to the border */
+            padding: 20px;
+            background-color: #f9f9f9;
         }
 
+        /* Styling for the header */
+        header {
+            background-color: #4CAF50; /* Green header */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            border-radius: 10px 10px 0 0; /* Rounded corners on top of the header */
+        }
+
+        .logo img {
+            width: 50px;
+            height: auto;
+        }
+
+        .title-container {
+            margin-top: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .slogan {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Styling for the Yearly Expenses Overview section */
         .expense-list {
             width: 100%;
             max-width: 600px;
@@ -37,11 +70,6 @@
 
         .expense-list tr:hover {
             background-color: #f1f1f1;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
         }
 
         h2 {
@@ -113,7 +141,7 @@
 
 <body>
 
-    <header class="header">
+    <header>
         <div class="logo">
             <img src="logo.png" alt="BudgetBuddy Logo">
         </div>

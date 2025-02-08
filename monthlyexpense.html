@@ -5,9 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Expenses - BudgetBuddy</title>
-    <link rel="stylesheet" href="styles.css">
+  
     <style>
-        /* Styling for the monthly expenses list */
+        /* Global styling */
+        body {
+            background-color: white; /* Set white background for the entire page */
+            font-family: Arial, sans-serif; /* Set a clean font for the page */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for the header */
+        header {
+            background-color: #4CAF50; /* Green background for header */
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        header .logo img {
+            width: 50px; /* Adjust logo size */
+        }
+
+        header .title-container {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        header .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        header .slogan {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        header .search-bar input {
+            padding: 10px;
+            font-size: 14px;
+            width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        header .sign-in a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        header .sign-in a:hover {
+            background-color: #555;
+        }
+
+        /* Styling for the content */
         .content {
             margin: 20px;
         }
@@ -104,7 +162,7 @@
 
 <body>
 
-    <header class="header">
+    <header>
         <div class="logo">
             <img src="logo.png" alt="BudgetBuddy Logo">
         </div>
@@ -234,12 +292,4 @@
                 pollDiv.innerHTML = "<p>Great job! You're staying within your budget.</p>";
             } else if (total > 500 && total <= 1000) {
                 pollDiv.innerHTML = "<p>You're doing okay, but consider cutting back a little.</p>";
-            } else {
-                pollDiv.innerHTML = "<p>You're exceeding your budget. Try to track your expenses more closely!</p>";
-            }
-        }
-    </script>
-
-</body>
-
-</html>
+ 

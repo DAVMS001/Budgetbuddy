@@ -5,19 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savings - BudgetBuddy</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Styling for Savings Page */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #ffffff; /* White background */
+            color: #333; /* Dark text for readability */
         }
 
         .header {
-            background-color: #c7347d;
+            background-color: #4CAF50; /* Green header */
             padding: 10px;
             color: white;
             text-align: center;
+        }
+
+        .logo img {
+            width: 150px; /* Adjust the width as needed */
+            height: auto; /* Keep the aspect ratio intact */
+        }
+
+        .title-container {
+            margin-top: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .slogan {
+            font-size: 16px;
+            font-style: italic;
         }
 
         .content {
@@ -28,8 +47,8 @@
         .piggy-bank-container {
             margin-top: 40px;
             position: relative;
-            height: 200px;
-            width: 200px;
+            height: 10px;
+            width: 10px;
             display: inline-block;
         }
 
@@ -116,6 +135,16 @@
         .color-picker input {
             margin: 0 10px;
         }
+
+        /* Style for the image */
+        .savings-image {
+            margin-top: 20px;
+            width: 80%; /* Adjust width as needed */
+            max-width: 600px; /* Ensure it doesn't get too large */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 
@@ -133,13 +162,10 @@
 
     <div class="content">
         <h2>Track Your Savings Progress</h2>
-
-        <!-- Piggy Bank Animation -->
+        <img src="piggybank.jpg" alt="Savings Progress Image" class="savings-image" />
         <div class="piggy-bank-container">
             <div id="piggyBank" class="piggy-bank"></div>
         </div>
-
-        <!-- Input form for savings -->
         <div class="savings-goal">
             <h3>Set Your Savings Goal</h3>
             <label for="goalAmount">Goal Amount ($): </label>
@@ -151,19 +177,13 @@
 
             <button class="deposit-button" onclick="depositMoney()">Deposit</button>
         </div>
-
-        <!-- Progress Bar for Savings -->
         <div class="progress-bar-container">
             <div id="progressBar" class="progress-bar"></div>
         </div>
-
-        <!-- Savings Details -->
         <div class="savings-details">
             <h3>Current Savings: $<span id="currentSavings">0</span></h3>
             <h3>Goal: $<span id="savingsGoal">0</span></h3>
         </div>
-
-        <!-- Tips Section -->
         <div class="tips">
             <h3>Tips for Saving:</h3>
             <ul>
@@ -173,7 +193,6 @@
                 <li>Set specific goals to stay motivated.</li>
             </ul>
         </div>
-
 
     <footer class="footer">
         <p>© 2025 BudgetBuddy. All Rights Reserved.</p>
@@ -213,7 +232,6 @@
             }
         }
 
-       
     </script>
 </body>
 
