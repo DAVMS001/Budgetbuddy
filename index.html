@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BudgetBuddy</title>
-   <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let dropdowns = document.querySelectorAll(".dropdown > a");
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    let submenu = this.nextElementSibling;
+                    submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+                });
+            });
+        });
+        
+    </script>
+    
 </head>
 <body>
 
@@ -16,27 +31,6 @@
              <div class="title">budgetbuddyy</div>
              <div class="slogan">Track Expenses, Save Smart, Live Stress-Free!</div>
         </div>
-<<<<<<< HEAD
-=======
-        <div class="title-container">
-            <div class="title">BudgetBuddy</div>
-            <div class="slogan">Track Expenses, Save Smart, Live Stress-Free!</div>
-        </div>
-        <nav class="menu">
-            <ul>
-                <li class="dropdown">
-                    <a href="#">Home ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Expense Tracker</a></li>
-                        <li><a href="#">Budget Planner</a></li>
-                        <li><a href="#">Bill Reminders</a></li>
-                        <li><a href="#">Savings</a></li>
-                        <li><a href="#">About the Website</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
->>>>>>> 260aba39cc3643565a54e1ca406b555458419790
         <div class="search-bar">
             <input type="text" placeholder="Search...">
         </div>
@@ -44,9 +38,60 @@
             <a href="#">Sign In</a>
         </div>
     </header>
-<<<<<<< HEAD
-=======
     
->>>>>>> 260aba39cc3643565a54e1ca406b555458419790
+    <nav class="menu">
+        <ul>
+            <li class="dropdown">
+                <a href="#">Home ▼</a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="dropdown">
+                        <a href="#">Expense Tracker ▼</a>
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="#">Daily Expense</a></li>
+                            <li><a href="#">Monthly Expense</a></li>
+                            <li><a href="#">Yearly Expense</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Budget Planner ▼</a>
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="#">Monthly Planner</a></li>
+                            <li><a href="#">Yearly Planner</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Bill Reminders ▼</a>
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="#">Electricity Bill</a></li>
+                            <li><a href="#">Mobile Recharge</a></li>
+                            <li><a href="#">Water Bill</a></li>
+                            <li><a href="#">Broadband</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Student Reminders ▼</a>
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="#">Hostel Fee</a></li>
+                            <li><a href="#">Mess Fee</a></li>
+                            <li><a href="#">Tuition Fee</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Savings ▼</a>
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="#">Piggybank</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">About ▼</a>
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li><a href="#">BudgetBuddy is a personal finance management tool designed to help you track your expenses, plan budgets, set bill reminders, and save money efficiently. Our goal is to make financial management easy and stress-free for everyone.</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
 </body>
 </html>

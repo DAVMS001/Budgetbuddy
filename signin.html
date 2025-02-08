@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetBuddy - Sign In</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo"> 
+        </div>
+        <div class="title-container">
+             <div class="title">budgetbuddyy</div>
+             <div class="slogan">Track Expenses, Save Smart, Live Stress-Free!</div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="sign-in">
+            <!-- Link to open the Sign In Modal -->
+            <a href="javascript:void(0);" id="signInBtn">Sign In</a>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li class="dropdown">
+                    <a href="#">Home ▼</a>
+                    <ul class="dropdown-menu" style="display: none;">
+                        <li class="dropdown">
+                            <a href="#">Expense Tracker ▼</a>
+                            <ul class="dropdown-menu" style="display: none;">
+                                <li><a href="#">Daily Expense</a></li>
+                                <li><a href="#">Monthly Expense</a></li>
+                                <li><a href="#">Yearly Expense</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Budget Planner ▼</a>
+                            <ul class="dropdown-menu" style="display: none;">
+                                <li><a href="#">Monthly Planner</a></li>
+                                <li><a href="#">Yearly Planner</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Bill Reminders ▼</a>
+                            <ul class="dropdown-menu" style="display: none;">
+                                <li><a href="#">Electricity Bill</a></li>
+                                <li><a href="#">Mobile Recharge</a></li>
+                                <li><a href="#">Water Bill</a></li>
+                                <li><a href="#">Broadband</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Student Reminders ▼</a>
+                            <ul class="dropdown-menu" style="display: none;">
+                                <li><a href="#">Hostel Fee</a></li>
+                                <li><a href="#">Mess Fee</a></li>
+                                <li><a href="#">Tuition Fee</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Savings ▼</a>
+                            <ul class="dropdown-menu" style="display: none;">
+                                <li><a href="#">Piggybank</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">About ▼</a>
+                            <ul class="dropdown-menu" style="display: none;">
+                                <li><a href="#">BudgetBuddy is a personal finance management tool designed to help you track your expenses, plan budgets, set bill reminders, and save money efficiently. Our goal is to make financial management easy and stress-free for everyone.</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- The Modal -->
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+            </div>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit">Login</button>
+                <button type="button" id="closeModalBtn">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal and the button to open it
+        var modal = document.getElementById("signInModal");
+        var btn = document.getElementById("signInBtn");
+        var closeBtn = document.getElementById("closeModalBtn");
+
+        // When the user clicks the "Sign In" link, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on the close button, close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

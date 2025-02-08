@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - BudgetBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo">
+        </div>
+        <div class="title-container">
+            <div class="title">Expense Tracker</div>
+            <div class="slogan">Track your daily expenses efficiently!</div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="sign-in">
+            <a href="#">Sign In</a>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Daily Expenses</h2>
+        <p>Track your expenses day by day with the chart below:</p>
+        
+        <!-- Chart Container -->
+        <canvas id="dailyExpenseChart" width="400" height="200"></canvas>
+        
+        <p>In the chart, each bar represents the total expense for a specific day.</p>
+    </div>
+
+    <script>
+        // Data for Daily Expenses (Example)
+        const dailyExpenses = [20, 35, 45, 30, 50, 60, 40]; // Example daily expenses
+        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']; // Days of the week
+
+        // Chart.js code to render a bar chart
+        const ctx = document.getElementById('dailyExpenseChart').getContext('2d');
+        const dailyExpenseChart = new Chart(ctx, {
+            type: 'bar', // Bar chart type
+            data: {
+                labels: days, // Labels for each bar (days of the week)
+                datasets: [{
+                    label: 'Daily Expenses ($)', // Label for the chart
+                    data: dailyExpenses, // Data for daily expenses
+                    backgroundColor: '#4CAF50', // Bar color
+                    borderColor: '#388E3C', // Bar border color
+                    borderWidth: 1 // Border width for bars
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true, // Start the y-axis at 0
+                        title: {
+                            display: true,
+                            text: 'Amount ($)' // Label for the y-axis
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Days of the Week' // Label for the x-axis
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

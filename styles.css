@@ -5,15 +5,21 @@ body {
     display: grid;
     grid-template-rows: auto 1fr;
     height: 100vh;
+    background-image: url('background.jpg');
+    background-size: cover;  /* Ensures the image covers the entire page */
+    background-position: center;  /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+
 }
+
 
 /* Header Styling */
 .header {
     display: grid;
     grid-template-columns: 100px 1fr 300px 150px;
     align-items: centre;
-    background-color: #00f2ff;
-    color: rgb(255, 255, 255);
+    background-color: #5D8736;
+    color: #F4FFC3;
     padding: 15px;
     gap: 20px;
 }
@@ -41,16 +47,16 @@ body {
 }
 
 .sign-in a {
-    color: white;
+    color: #F4FFC3;
     text-decoration: none;
     font-weight: bold;
     padding: 8px 15px;
-    border: 2px solid white;
+    border: 2px solid #F4FFC3;
     border-radius: 5px;
 }
 
 .sign-in a:hover {
-    background-color: white;
+    background-color: #F4FFC3;
     color: #2c3e50;
 }
 .menu ul {
@@ -66,7 +72,8 @@ body {
 
 .menu ul li a {
     text-decoration: none;
-    color: white;
+    color:#F4FFC3;
+    background-color: #5D8736;
     font-weight: bold;
     padding: 10px 15px;
     display: block;
@@ -74,13 +81,13 @@ body {
 }
 
 .menu ul li a:hover {
-    background-color: #008b8b;
+    background-color: #5D8736;
     border-radius: 5px;
 }
 
 .dropdown-menu {
     position: absolute;
-    background-color: #00a3a3;
+    background-color: #5D8736;
     min-width: 180px;
     display: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -97,12 +104,12 @@ body {
 .dropdown-menu li a {
     padding: 10px;
     display: block;
-    color: white;
+    color: #F4FFC3;
     width: 100%;
 }
 
 .dropdown-menu li a:hover {
-    background-color: #008080;
+    background-color: #5D8736;
 }
 
 .dropdown:hover .dropdown-menu {
