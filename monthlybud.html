@@ -5,9 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Planner - BudgetBuddy</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Styling for the Monthly Planner page */
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white; /* White background */
+            color: #333; /* Dark text color */
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #4CAF50; /* Green header */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        h1, .title {
+            font-size: 2.5em;
+        }
+
+        .title-container {
+            text-align: center;
+        }
+
+        .slogan {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Logo Size Adjustment */
+        .logo img {
+            width: 100px; /* Reduce logo width */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Content Section */
         .content {
             margin: 20px;
         }
@@ -27,14 +71,15 @@
         .form-container button {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #4CAF50;
+            background-color: #4CAF50; /* Green button */
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 4px;
         }
 
         .form-container button:hover {
-            background-color: #45a049;
+            background-color: #45a049; /* Darker green on hover */
         }
 
         /* Category Expense Table */
@@ -65,6 +110,7 @@
             background-color: #f1f1f1;
         }
 
+        /* Category-Wise Summary */
         .category-summary {
             font-size: 18px;
             font-weight: bold;
@@ -75,7 +121,7 @@
 
 <body>
 
-    <header class="header">
+    <header>
         <div class="logo">
             <img src="logo.png" alt="BudgetBuddy Logo">
         </div>
