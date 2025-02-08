@@ -5,21 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BudgetBuddy</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let dropdowns = document.querySelectorAll(".dropdown > a");
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener("click", function(event) {
-                    event.preventDefault();
-                    let submenu = this.nextElementSibling;
-                    submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
-                });
-            });
-        });
-        
-    </script>
-    
+    <link rel="stylesheet" href="signin-style.css">
+    <script defer src="script.js"></script>   
 </head>
 <body>
 
@@ -35,8 +22,10 @@
             <input type="text" placeholder="Search...">
         </div>
         <div class="sign-in">
-            <a href="#">Sign In</a>
+            <!-- Link to open the Sign In Modal -->
+            <a href="javascript:void(0);" id="signInBtn">Sign In</a>
         </div>
+        
     </header>
     
     <nav class="menu">
@@ -47,27 +36,19 @@
                     <li class="dropdown">
                         <a href="#">Expense Tracker ▼</a>
                         <ul class="dropdown-menu" style="display: none;">
-                            <li><a href="#">Daily Expense</a></li>
-                            <li><a href="#">Monthly Expense</a></li>
-                            <li><a href="#">Yearly Expense</a></li>
+                            <li><a href="dailyexpense.html">Daily Expense</a></li>
+                            <li><a href="monthlyexpense.html">Monthly Expense</a></li>
+                            <li><a href="yearlyexpense.html">Yearly Expense</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#">Budget Planner ▼</a>
                         <ul class="dropdown-menu" style="display: none;">
-                            <li><a href="#">Monthly Planner</a></li>
-                            <li><a href="#">Yearly Planner</a></li>
+                            <li><a href="monthlybud.html">Monthly Planner</a></li>
+                            <li><a href="yearlybud.html">Yearly Planner</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#">Bill Reminders ▼</a>
-                        <ul class="dropdown-menu" style="display: none;">
-                            <li><a href="#">Electricity Bill</a></li>
-                            <li><a href="#">Mobile Recharge</a></li>
-                            <li><a href="#">Water Bill</a></li>
-                            <li><a href="#">Broadband</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="billreminder.html">Bill Reminders</a></li>
                     <li class="dropdown">
                         <a href="#">Student Reminders ▼</a>
                         <ul class="dropdown-menu" style="display: none;">
@@ -92,6 +73,5 @@
             </li>
         </ul>
     </nav>
-
 </body>
 </html>

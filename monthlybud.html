@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Planner - BudgetBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for the Monthly Planner page */
+        .content {
+            margin: 20px;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container input,
+        .form-container select {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Category Expense Table */
+        .expense-list {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .expense-list th,
+        .expense-list td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .expense-list th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .expense-list tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .expense-list tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .category-summary {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo">
+        </div>
+        <div class="title-container">
+            <div class="title">Monthly Expense Planner</div>
+            <div class="slogan">Plan your monthly expenses and track spending by category!</div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Monthly Planner</h2>
+
+        <!-- Form for adding a new expense -->
+        <div class="form-container">
+            <label for="category">Expense Category: </label>
+            <select id="category">
+                <option value="Food">Food</option>
+                <option value="Rent">Rent</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="item">Expense Item: </label>
+            <input type="text" id="item" placeholder="Enter item description" />
+
+            <label for="expense">Amount ($): </label>
+            <input type="number" id="expense" placeholder="Enter expense amount" />
+
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+
+        <!-- Table for Category-Wise Expenses -->
+        <h3>Expenses by Category</h3>
+        <table class="expense-list">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Item</th>
+                    <th>Expense ($)</th>
+                </tr>
+            </thead>
+            <tbody id="expenseList">
+                <!-- Category-wise expenses will be added here -->
+            </tbody>
+        </table>
+
+        <!-- Total Expense Summary by Category -->
+        <div id="categorySummary" class="category-summary">
+            <!-- Category-wise total will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        // Object to store total expenses by category
+        const categoryExpenses = {
+            Food: 0,
+            Rent: 0,
+            Utilities: 0,
+            Transportation: 0,
+            Entertainment: 0,
+            Other: 0
+        };
+
+        // Function to add an expense
+        function addExpense() {
+            const category = document.getElementById("category").value;
+            const item = document.getElementById("item").value;
+            const expense = document.getElementById("expense").value;
+
+            // Validate inputs
+            if (item && expense && !isNaN(expense) && expense > 0) {
+                // Add the expense to the appropriate category
+                categoryExpenses[category] += parseFloat(expense);
+
+                // Add the expense to the table
+                const tableBody = document.getElementById("expenseList");
+                const row = document.createElement("tr");
+
+                const categoryCell = document.createElement("td");
+                categoryCell.textContent = category;
+
+                const itemCell = document.createElement("td");
+                itemCell.textContent = item;
+
+                const expenseCell = document.createElement("td");
+                expenseCell.textContent = "$" + expense;
+
+                row.appendChild(categoryCell);
+                row.appendChild(itemCell);
+                row.appendChild(expenseCell);
+
+                tableBody.appendChild(row);
+
+                // Clear input fields
+                document.getElementById("item").value = "";
+                document.getElementById("expense").value = "";
+
+                // Update the category-wise summary
+                updateCategorySummary();
+            } else {
+                alert("Please enter valid item and expense amount.");
+            }
+        }
+
+        // Function to update the total expense summary by category
+        function updateCategorySummary() {
+            let summaryHtml = "<h3>Category-Wise Expense Summary</h3>";
+            for (const category in categoryExpenses) {
+                summaryHtml += `<p>${category}: $${categoryExpenses[category].toFixed(2)}</p>`;
+            }
+            document.getElementById("categorySummary").innerHTML = summaryHtml;
+        }
+    </script>
+
+</body>
+
+</html>
