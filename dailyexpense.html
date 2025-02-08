@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Expenses - BudgetBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom styling for form and chart */
+        .form-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .form-container h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Chart container styling */
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo">
+        </div>
+        <div class="title-container">
+            <div class="title">Daily Expense Tracker</div>
+            <div class="slogan">Track your daily expenses with ease!</div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="sign-in">
+            <a href="#">Sign In</a>
+        </div>
+    </header><div class="content">
+        <div class="form-container">
+            <h2>Enter Your Daily Expenses</h2>
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="expenseDescription">Expense Description</label>
+                    <input type="text" id="expenseDescription" placeholder="e.g., Coffee, Groceries" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseAmount">Amount ($)</label>
+                    <input type="text" id="expenseAmount" placeholder="Amount spent" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseDay">Choose Day</label>
+                    <select id="expenseDay" required>
+                        <option value="">Select a day</option>
+                        <option value="Mon">Monday</option>
+                        <option value="Tue">Tuesday</option>
+                        <option value="Wed">Wednesday</option>
+                        <option value="Thu">Thursday</option>
+                        <option value="Fri">Friday</option>
+                        <option value="Sat">Saturday</option>
+                        <option value="Sun">Sunday</option>
+                    </select>
+                <button type="submit">Add Expense</button>
+            </form>
+        </div>
+
+        <h2>Daily Expenses Overview</h2>
+        <p>Track your daily spending visually with the chart below:</p>
+
+        <!-- Chart Container -->
+        <div class="chart-container">
+            <canvas id="dailyExpenseChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Initial daily expense data
+        let dailyExpenses = []; // Example daily expenses
+        let days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']; // Days of the week
+
+        // Create the bar chart
+        const ctx = document.getElementById('dailyExpenseChart').getContext('2d');
+        const dailyExpenseChart = new Chart(ctx, {
+            type: 'bar', // Bar chart type
+            data: {
+                labels: days, // Labels for each bar (days of the week)
+                datasets: [{
+                    label: 'Daily Expenses ($)', // Label for the chart
+                    data: dailyExpenses, // Data for daily expenses
+                    backgroundColor: '#4CAF50', // Bar color
+                    borderColor: '#388E3C', // Bar border color
+                    borderWidth: 1 // Border width for bars
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true, // Start the y-axis at 0
+                        title: {
+                            display: true,
+                            text: 'Amount ($)' // Label for the y-axis
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Days of the Week' // Label for the x-axis
+                        }
+                    }
+                }
+            }
+        });
+
+        // Handle form submission
+        const form = document.getElementById('expenseForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the page from reloading
+
+            const description = document.getElementById('expenseDescription').value;
+            const amount = parseFloat(document.getElementById('expenseAmount').value);
+
+            if (!isNaN(amount) && description !== '') {
+                // Add the expense to the chart data (just as an example, appending to the array)
+                dailyExpenses.push(amount);
+                days.push('NewDay'); // Add a new day label (just an example, you could customize this)
+
+                // Update the chart data
+                dailyExpenseChart.data.datasets[0].data = dailyExpenses;
+                dailyExpenseChart.data.labels = days;
+                dailyExpenseChart.update();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
