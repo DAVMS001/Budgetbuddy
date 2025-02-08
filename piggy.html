@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings - BudgetBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for Savings Page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #3498db;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .content {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .piggy-bank-container {
+            margin-top: 40px;
+            position: relative;
+            height: 200px;
+            width: 200px;
+            display: inline-block;
+        }
+
+        .piggy-bank {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('piggy-bank.png');
+            background-size: cover;
+            background-position: center;
+            transition: bottom 0.5s;
+        }
+
+        .deposit-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .deposit-button:hover {
+            background-color: #45a049;
+        }
+
+        .savings-goal {
+            margin-top: 30px;
+            font-size: 20px;
+        }
+
+        .savings-details {
+            margin-top: 20px;
+        }
+
+        .progress-bar-container {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 30px;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .tips {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .tips h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .tips ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tips li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Color picker section */
+        .color-picker {
+            margin-top: 40px;
+        }
+
+        .color-picker label {
+            font-size: 16px;
+        }
+
+        .color-picker input {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo" />
+        </div>
+        <div class="title-container">
+            <div class="title">Savings</div>
+            <div class="slogan">Save Money, Achieve Your Goals!</div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Track Your Savings Progress</h2>
+
+        <!-- Piggy Bank Animation -->
+        <div class="piggy-bank-container">
+            <div id="piggyBank" class="piggy-bank"></div>
+        </div>
+
+        <!-- Input form for savings -->
+        <div class="savings-goal">
+            <h3>Set Your Savings Goal</h3>
+            <label for="goalAmount">Goal Amount ($): </label>
+            <input type="number" id="goalAmount" placeholder="Enter goal amount" />
+
+            <h3>Deposit Money</h3>
+            <label for="depositAmount">Deposit Amount ($): </label>
+            <input type="number" id="depositAmount" placeholder="Enter deposit amount" />
+
+            <button class="deposit-button" onclick="depositMoney()">Deposit</button>
+        </div>
+
+        <!-- Progress Bar for Savings -->
+        <div class="progress-bar-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <!-- Savings Details -->
+        <div class="savings-details">
+            <h3>Current Savings: $<span id="currentSavings">0</span></h3>
+            <h3>Goal: $<span id="savingsGoal">0</span></h3>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips">
+            <h3>Tips for Saving:</h3>
+            <ul>
+                <li>Automate your savings each month.</li>
+                <li>Track your expenses regularly to avoid overspending.</li>
+                <li>Start small, but be consistent.</li>
+                <li>Set specific goals to stay motivated.</li>
+            </ul>
+        </div>
+
+
+    <footer class="footer">
+        <p>© 2025 BudgetBuddy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initial savings and goal data
+        let currentSavings = 0;
+        let savingsGoal = 0;
+
+        // Function to deposit money and update progress
+        function depositMoney() {
+            let depositAmount = parseFloat(document.getElementById('depositAmount').value);
+            let goalAmount = parseFloat(document.getElementById('goalAmount').value);
+
+            if (depositAmount > 0 && goalAmount > 0) {
+                // Update current savings and savings goal
+                currentSavings += depositAmount;
+                savingsGoal = goalAmount;
+
+                // Update the display values
+                document.getElementById('currentSavings').textContent = currentSavings.toFixed(2);
+                document.getElementById('savingsGoal').textContent = savingsGoal.toFixed(2);
+
+                // Update progress bar and piggy bank
+                let progressPercentage = (currentSavings / savingsGoal) * 100;
+                document.getElementById('progressBar').style.width = progressPercentage + '%';
+
+                // Animate piggy bank
+                document.getElementById('piggyBank').style.bottom = (currentSavings / savingsGoal) * 150 + 'px';
+
+                // Clear deposit input
+                document.getElementById('depositAmount').value = '';
+            } else {
+                alert('Please enter valid values for both goal and deposit.');
+            }
+        }
+
+       
+    </script>
+</body>
+
+</html>

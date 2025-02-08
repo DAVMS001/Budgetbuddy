@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Expenses - BudgetBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for the Yearly Expenses page */
+        .content {
+            margin: 20px;
+        }
+
+        .expense-list {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .expense-list th,
+        .expense-list td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .expense-list th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .expense-list tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .expense-list tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        /* Styling for the form */
+        .form-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container input,
+        .form-container select {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Styling for the total expense and poll */
+        .total-expense {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .poll {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .poll button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .poll button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Protip Styling */
+        .protip {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff9800;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo">
+        </div>
+        <div class="title-container">
+            <div class="title">Yearly Expense Tracker</div>
+            <div class="slogan">Track your yearly expenses and save smarter!</div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Yearly Expenses Overview</h2>
+
+        <!-- Form for adding a new yearly expense -->
+        <div class="form-container">
+            <label for="month">Month: </label>
+            <select id="month">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+
+            <label for="item">Expense Item: </label>
+            <input type="text" id="item" placeholder="Enter item description" />
+
+            <label for="expense">Expense Amount ($): </label>
+            <input type="number" id="expense" placeholder="Enter expense" />
+
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+
+        <!-- Expense List Table -->
+        <table class="expense-list">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Item</th>
+                    <th>Expense ($)</th>
+                </tr>
+            </thead>
+            <tbody id="expenseList">
+                <!-- Yearly expenses will be added here -->
+            </tbody>
+        </table>
+
+        <!-- Total Expense Display -->
+        <div class="total-expense">
+            Total Yearly Expense: $<span id="totalExpense">0</span>
+        </div>
+
+        <!-- Poll or message based on total expense -->
+        <div class="poll" id="poll">
+            <!-- The poll message will be dynamically updated based on the total -->
+        </div>
+
+        <!-- Protip for saving money -->
+        <div class="protip" id="protip">
+            <!-- Protip will be dynamically updated based on total expense -->
+        </div>
+    </div>
+
+    <script>
+        let totalExpense = 0; // Initialize total yearly expense
+
+        // Function to add expense to the list
+        function addExpense() {
+            const month = document.getElementById("month").value;
+            const item = document.getElementById("item").value;
+            const expense = document.getElementById("expense").value;
+
+            // Check if the user entered a valid expense and item
+            if (item && expense && !isNaN(expense) && expense > 0) {
+                const tableBody = document.getElementById("expenseList");
+
+                // Create a new row
+                const row = document.createElement("tr");
+
+                // Create the month cell
+                const monthCell = document.createElement("td");
+                monthCell.textContent = month;
+
+                // Create the item cell
+                const itemCell = document.createElement("td");
+                itemCell.textContent = item;
+
+                // Create the expense cell
+                const expenseCell = document.createElement("td");
+                expenseCell.textContent = "$" + expense;
+
+                // Append the cells to the row
+                row.appendChild(monthCell);
+                row.appendChild(itemCell);
+                row.appendChild(expenseCell);
+
+                // Append the row to the table body
+                tableBody.appendChild(row);
+
+                // Update the total yearly expense
+                totalExpense += parseFloat(expense);
+                document.getElementById("totalExpense").textContent = totalExpense.toFixed(2);
+
+                // Display the poll or message based on the total
+                displayPoll(totalExpense);
+
+                // Display the Protip based on the total expense
+                displayProtip(totalExpense);
+
+                // Clear the input fields after adding the expense
+                document.getElementById("item").value = "";
+                document.getElementById("expense").value = "";
+            } else {
+                alert("Please enter a valid item and expense amount.");
+            }
+        }
+
+        // Function to display a message or poll based on total expense
+        function displayPoll(total) {
+            const pollDiv = document.getElementById("poll");
+
+            if (total <= 5000) {
+                pollDiv.innerHTML = "<p>Great job! You're staying within your yearly budget.</p>";
+            } else if (total > 5000 && total <= 10000) {
+                pollDiv.innerHTML = "<p>You're doing okay, but try to save more next year.</p>";
+            } else {
+                pollDiv.innerHTML = "<p>You're exceeding your yearly budget. It's time to reconsider your spending habits!</p>";
+            }
+        }
+
+        // Function to display a Protip based on total expense
+        function displayProtip(total) {
+            const protipDiv = document.getElementById("protip");
+
+            if (total <= 5000) {
+                protipDiv.innerHTML = "<p>Protip: You're on track! Keep reviewing your expenses to stay ahead.</p>";
+            } else if (total > 5000 && total <= 10000) {
+                protipDiv.innerHTML = "<p>Protip: Consider cutting back on non-essential expenses to boost savings!</p>";
+            } else {
+                protipDiv.innerHTML = "<p>Protip: Try setting limits on certain categories to control your spending.</p>";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
