@@ -10,7 +10,7 @@
 - Member 2: DEVANANDANA MS - SCMS SCHOOL OF ENGINEERING AND TECHNOLOGY
 
 ### Hosted Project Link
-[mention your project hosted project link here]
+[https://budgetbuddy-self.vercel.app/]
 
 ### Project Description
 BudgetBuddy is an intuitive and user-friendly personal finance management website designed to help individuals track expenses, plan budgets, and manage savings effortlessly. Whether you're a student managing allowances, a working professional controlling monthly expenses, or a family looking to save for the future, BudgetBuddy empowers you to take control of your finances with eases.
