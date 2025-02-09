@@ -24,15 +24,14 @@ BudgetBuddy is an intelligent financial management platform designed to help ind
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- HTML, CSS, JAVASCRIPT
-- NONE
-- NONE
-- NONE
+- HTML
+- CSS
+- JAVASCRIPT
 
 For Hardware:
 - LAPTOP
-- NONE
-- NONE
+-
+- 
 
 ### Implementation
 For Software:
