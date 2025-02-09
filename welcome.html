@@ -1,0 +1,133 @@
+
+<head>
+    <style>
+        /* Reduce logo size */
+        .logo img {
+            width: 80px; /* Adjust as needed */
+            height: auto;
+        }
+
+        /* Style the welcome message */
+        .welcome-message {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }.welcome-section p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+
+        /* Improve slogan styling */
+        .slogan {
+            font-size: 16px;
+            font-style: italic;
+            color: #555;
+            margin-top: 5px;
+        }.header {
+    display: grid;
+    grid-template-columns: 100px 1fr 300px 150px;
+    align-items: centre;
+    background-color: #5D8736;
+    color: #F4FFC3;
+    padding: 15px;
+    gap: 20px;
+}
+
+.logo img {
+    width: 80px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.sign-in {
+    text-align: right;
+}
+
+.sign-in a {
+    color: #F4FFC3;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border: 2px solid #F4FFC3;
+    border-radius: 5px;
+}
+
+.sign-in a:hover {
+    background-color: #F4FFC3;
+    color: #2c3e50;
+}
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="BudgetBuddy Logo">
+        </div>
+        <div class="title-container">
+            <div class="title">BudgetBuddy</div>
+            <div class="slogan">Track Expenses, Save Smart, Live Stress-Free!</div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="sign-in">
+            <a href="javascript:void(0);" id="signInBtn">Sign In</a>
+        </div>
+    </header>
+
+    <!-- Welcoming Message -->
+    <div class="welcome-message">
+        Welcome to BudgetBuddy!<p>Your personal finance companion. Track your expenses, set budgets, and save smartly with ease!</p>
+        <p>💰 Say goodbye to financial stress and hello to smarter savings!  
+           Whether you're planning your next vacation, tracking daily expenses,  
+           or setting up a long-term budget, **BudgetBuddy** has got you covered.  
+           Take control of your money and build the future you deserve! 🚀</p>
+
+    </div>
+
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+            </div>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <button type="button" id="closeModalBtn">Close</button>
+            </form>
+        </div>
+    </div>
+</body>
