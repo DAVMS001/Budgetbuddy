@@ -28,10 +28,6 @@ For Software:
 - CSS
 - JAVASCRIPT
 
-For Hardware:
-- LAPTOP
--
-- 
 
 ### Implementation
 For Software:
